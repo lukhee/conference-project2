@@ -20,6 +20,7 @@
 </template>
 <script>
 import axios from 'axios';
+// import router from '../router';
 export default {
   name: "register",
   data() {
@@ -35,25 +36,20 @@ export default {
 
     methods:{
         register(){
-            let registerAs = this.registerAs
+            let registerAs = this.registerAs;
+            // const self = this
            let users={
                 fullName: this.user.fullName,
                 Email: this.user.email,
                 Phone_No: this.user.phone_no,
             }
             let url = `http://localhost:3000/v1/user/${registerAs}`
+            console.log(url)
             console.log(users)
-            axios.post(url,{
-                fullName: this.user.fullName,
-                Email: this.user.email,
-                Phone_No: this.user.phone_no,
-            })
+            axios.post(url,users)
             .then(response => {
-            // JSON responses are automatically parsed.
-            let result = response.data
-            if(result){
-                router
-              }
+        //     // // JSON responses are automatically parsed.
+            this.$router.push('/')
             })
             .catch(e => {
                 console.log(e)

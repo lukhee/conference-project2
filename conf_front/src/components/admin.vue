@@ -45,7 +45,7 @@ export default {
             let speaker = []
                 result.forEach(function (user) {
                     console.log(user.category)
-                    if(user.category=="attendee"){
+                    if(user.category=="guest"){
                         guest.push(user);
                         console.log(guest)
                     } else{
