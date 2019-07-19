@@ -1,7 +1,7 @@
 const con = require("../util/db")
 
 exports.viewAll = (req, res, next) => {
-    con.query('SELECT * FROM users', (err, rows) => {
+    con.query('SELECT * FROM members', (err, rows) => {
         if (err) throw err;
         console.log('Data received from Db:\n');
         console.log(rows);
@@ -13,7 +13,7 @@ exports.guestToSpeaker = (req, res, next) => {
     let ID = req.params.ID
     const category = "talk"
     console.log(ID)
-    let sql = `UPDATE users
+    let sql = `UPDATE members
            SET category = ?
            WHERE ID = ?`;
 
@@ -28,7 +28,7 @@ exports.guestToSpeaker = (req, res, next) => {
 
 exports.removeSpeaker = (req, res, next) => {
     let ID = req.params.ID
-    var sql = `DELETE FROM users WHERE ID = ${ID}` ;  
+    var sql = `DELETE FROM members WHERE ID = ${ID}` ;  
     con.query(sql, (err, rows) => {
         if (err) throw err;
         console.log('Data received from Db:\n');
