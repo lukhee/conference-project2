@@ -2,14 +2,14 @@ const mysql = require('mysql');
 
 // mysql connection
 var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "conference"
-    // host:"qzkp8ry756433yd4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    // user:"mav92vxmzj4xgqp9",
-    // password:"q7i5lfeolieiamar",
-    // database:"b8xf4tesxbck6p27"
+    // host: "localhost",
+    // user: "root",
+    // password: "",
+    // database: "conference"
+    host:"qzkp8ry756433yd4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user:"mav92vxmzj4xgqp9",
+    password:"q7i5lfeolieiamar",
+    database:"b8xf4tesxbck6p27"
 });
 
 con.connect(function (err) {
