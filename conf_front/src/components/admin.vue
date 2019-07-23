@@ -4,28 +4,33 @@
         <router-link class="link" to='/'>LOMBACK</router-link>
     </header>
     <div class="list">
-        <div>
-            <h1>Guest here</h1>
-            <ul v-for="guest in guestList" v-bind:key="guest.id">
-                <div class="guest">
-                    <li><h3>Name: {{guest.FullName}}</h3></li>
-                    <li><h3>Phone_no: {{guest.Phone_No}}</h3></li>
-                    <li><h3>email: {{guest.Email}} </h3></li>
-                    <button class="button" @click="addToSpeakers(guest)"> Add To Guests</button>
-                </div>
-            </ul>
-        </div> 
-        <div>
-            <h1>SPEAKERS</h1>
-             <ul v-for="speaker in speakerList" v-bind:key="speaker.id">
-                <div class="guest">
-                    <li><h3>Name:   {{speaker.FullName}}</h3></li>
-                    <li><h3>Phone_no: {{speaker.Phone_No}}</h3></li>
-                    <li><h3>email:  {{speaker.Email}} </h3></li>
-                    <button class="button" @click="deleteGuest(speaker)"> Remove Speaker</button>
-                </div>
-            </ul>
-        </div>
+        <!-- <div class="members" v-if="guestList.length == 0 || speakerList.length"> -->
+            <div>
+                <h1>Guest here</h1>
+                <ul v-for="guest in guestList" v-bind:key="guest.id">
+                    <div class="guest">
+                        <li><h3>Name: {{guest.FullName}}</h3></li>
+                        <li><h3>Phone_no: {{guest.Phone_No}}</h3></li>
+                        <li><h3>email: {{guest.Email}} </h3></li>
+                        <button class="button" @click="addToSpeakers(guest)"> Add To Speakers</button>
+                    </div>
+                </ul>
+            </div> 
+            <div>
+                <h1>SPEAKERS</h1>
+                <ul v-for="speaker in speakerList" v-bind:key="speaker.id">
+                    <div class="guest">
+                        <li><h3>Name:   {{speaker.FullName}}</h3></li>
+                        <li><h3>Phone_no: {{speaker.Phone_No}}</h3></li>
+                        <li><h3>email:  {{speaker.Email}} </h3></li>
+                        <button class="button remove" @click="deleteGuest(speaker)"> Remove Speaker</button>
+                    </div>
+                </ul>
+            </div>
+        <!-- </div> -->
+        <!-- <div v-else>
+            <h1> No Record Yet</h1>
+        </div> -->
     </div>
     </div>
 </template>
@@ -57,7 +62,9 @@ export default {
         },
 
         axiosCall(){
-            axios.get(`http://localhost:3000/v1/admin`)
+            let url = 'https://shrouded-bastion-40392.herokuapp.com/v1/admin'
+            // https://git.heroku.com/meetup2.git
+            axios.get('https://shrouded-bastion-40392.herokuapp.com/v1/admin')
             .then(response => {
             // JSON responses are automatically parsed.
             let result = response.data
@@ -69,7 +76,7 @@ export default {
         },
 
         addToSpeakers(guest){
-             axios.put(`http://localhost:3000/v1/admin/${guest.ID}`)
+             axios.put(`https://shrouded-bastion-40392.herokuapp.com/v1/admin/${guest.ID}`)
             .then(response => {
             // JSON responses are automatically parsed.
             let result = response.data
@@ -83,7 +90,7 @@ export default {
         },
 
         deleteGuest(speaker){
-             axios.delete(`http://localhost:3000/v1/admin/${speaker.ID}`)
+             axios.delete(`https://shrouded-bastion-40392.herokuapp.com/v1/admin/${speaker.ID}`)
             .then(response => {
             // JSON responses are automatically parsed.
             let result = response.data
@@ -122,7 +129,7 @@ header{
   text-transform: uppercase;
   display: block;
 }
-.list{
+.list {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -130,9 +137,17 @@ header{
     text-align: left;
     background: #f0f0f0;
 }
+.members{
+    display: flex;
+    justify-content: space-around;
+    text-align: left;
+}
+.remove{
+    background: red;
+}
 
 .list>div{
-    width: 40%;
+    width: 100%;
     background: white;
     padding: 5px 10px;
 }
@@ -142,7 +157,7 @@ ul{
     margin: 0;
 }
 .guest{
-    border-bottom: 1px solid #009cfe;
+    border-top: 1px solid #009cfe;
     padding-bottom: 10px;
 }
 .button{

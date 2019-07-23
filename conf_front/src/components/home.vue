@@ -49,7 +49,7 @@ export default {
 
 @media (min-width: 840px) {
  #bg {
-            clip-path: polygon(0 0, 83% 0, 59% 100%, 0% 100%);
+        clip-path: polygon(0 0, 83% 0, 59% 100%, 0% 100%);
   }
 }
  header{

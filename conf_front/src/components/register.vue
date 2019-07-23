@@ -11,7 +11,7 @@
                 <label> EMAIL</label>
                 <input type="text" v-model="user.email">
                 <label> PHONE NO</label>
-                <input type="text" v-model="user.phone_no">
+                <input type="number" v-model="user.phone_no">
                 <button @click.prevent="register()"> Register </button>
             </form>
         </section>
@@ -43,7 +43,7 @@ export default {
                 Email: this.user.email,
                 Phone_No: this.user.phone_no,
             }
-            let url = `http://localhost:3000/v1/user/${registerAs}`
+            let url = `https://shrouded-bastion-40392.herokuapp.com/v1/user/${registerAs}`
             console.log(url)
             console.log(users)
             axios.post(url,users)
